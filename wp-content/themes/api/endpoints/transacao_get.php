@@ -2,18 +2,18 @@
 
 // API PRODUTOS
 function api_transacao_get($request) {
-  $tipo = sanitize_text_field($request['tipo']);
+  $tipo = sanitize_text_field($request['tipo']) ?: 'comprador_id';
   $user = wp_get_current_user();
   $user_id = $user->ID;
 
   if($user_id) {
-    $email = get_userdata($user_id)->user_email;
+    $login = get_userdata($user_id)->user_login;
 
     $meta_query = null;
     if($tipo) {
       $meta_query = array(
         'key' => $tipo,
-        'value' => $email,
+        'value' => $login,
         'compare' => '='
       );
     }
