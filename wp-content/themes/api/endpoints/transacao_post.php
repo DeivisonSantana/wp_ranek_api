@@ -3,7 +3,7 @@
 function api_transacao_post($request) {
   $user = wp_get_current_user();
   $user_id = $user->ID;
-  $produto_vendido = $request['produto']['vendido']=== 'false';
+  $produto_vendido = $request['produto']['vendido'] === 'false';
 
   if($user_id > 0) {
     $produto_slug = sanitize_text_field($request['produto']['id']);
@@ -13,7 +13,7 @@ function api_transacao_post($request) {
     $endereco = json_encode($request['endereco'], JSON_UNESCAPED_UNICODE);
     $produto = json_encode($request['produto'], JSON_UNESCAPED_UNICODE);
 
-    produto_id = get_produto_id_by_slug($produto_slug);
+    $produto_id = get_produto_id_by_slug($produto_slug);
     update_post_meta($produto_id, 'vendido', 'true');
 
     $response = array(
@@ -41,7 +41,7 @@ function registrar_api_transacao_post() {
   register_rest_route('api', '/transacao', array(
     array(
       'methods' => WP_REST_Server::CREATABLE,
-      'callback' => 'api_produto_post',
+      'callback' => 'api_transacao_post',
     ),
   ));
 }
