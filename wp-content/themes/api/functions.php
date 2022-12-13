@@ -14,11 +14,9 @@ require_once($template_diretorio . "/endpoints/produto_get.php");
 require_once($template_diretorio . "/endpoints/produto_delete.php");
 
 require_once($template_diretorio . "/endpoints/transacao_post.php");
-
 require_once($template_diretorio . "/endpoints/transacao_get.php");
 
-
-function get_produto_id_by_slug($slug){
+function get_produto_id_by_slug($slug) {
   $query = new WP_Query(array(
     'name' => $slug,
     'post_type' => 'produto',
@@ -26,11 +24,10 @@ function get_produto_id_by_slug($slug){
     'fields' => 'ids'
   ));
   $posts = $query->get_posts();
-
   return array_shift($posts);
 }
 
-add_action('rest_pre_serve_request', function(){
+add_action('rest_pre_serve_request', function() {
   header('Access-Control-Expose-Headers: X-Total-Count');
 });
 
@@ -41,16 +38,14 @@ add_action('jwt_auth_expire', 'expire_token');
 
 function my_login_screen() { ?>
 <style type="text/css">
-  #login h1 a {
-    background-image: none;
-  }
-  #backtoblog {
-    display:none;
-  }
+#login h1 a {
+  background-image: none;
+}
+#backtoblog {
+  display: none;
+}
 </style>
-
-<?php}
-
+<?php }
 add_action('login_enqueue_scripts', 'my_login_screen');
 
 ?>
