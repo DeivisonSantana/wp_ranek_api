@@ -1,5 +1,4 @@
 <?php
-
 // API PRODUTOS
 function api_transacao_get($request) {
   $tipo = sanitize_text_field($request['tipo']) ?: 'comprador_id';
@@ -44,8 +43,8 @@ function api_transacao_get($request) {
       );
     }
   } else {
-    $response = new WP_error('permisao', 'Usuário não possui permissão.', array('status' => 401));
-}
+    $response = new WP_error('permissao', 'Usuário não possui permissão.', array('status' => 401));
+  }
   return rest_ensure_response($response);
 }
 
