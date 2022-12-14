@@ -5,14 +5,12 @@
 # Quaisquer alterações nas diretivas entre esses marcadores serão sobrescritas.
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{HTTP:Authorization} ^(.*)
-RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /wp_ranek/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /wp_ranek/index.php [L]
 </IfModule>
-SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 
 # END WordPress
