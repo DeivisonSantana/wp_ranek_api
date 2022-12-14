@@ -3,7 +3,7 @@
 function api_transacao_post($request) {
   $user = wp_get_current_user();
   $user_id = $user->ID;
-  $produto_vendido = $request['produto']['vendido'] === 'false';
+  $produto_vendido = $request['produto']['vendido']=== 'false';
 
   if($user_id > 0) {
     $produto_slug = sanitize_text_field($request['produto']['id']);
@@ -41,7 +41,7 @@ function registrar_api_transacao_post() {
   register_rest_route('api', '/transacao', array(
     array(
       'methods' => WP_REST_Server::CREATABLE,
-      'callback' => 'api_transacao_post',
+      'callback' => 'api_produto_post',
     ),
   ));
 }

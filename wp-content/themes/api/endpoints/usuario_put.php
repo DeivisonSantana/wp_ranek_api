@@ -27,6 +27,7 @@ function api_usuario_put($request) {
       );
       wp_update_user($response);
 
+      
       update_user_meta($user_id, 'cep', $cep);
       update_user_meta($user_id, 'rua', $rua);
       update_user_meta($user_id, 'numero', $numero);
