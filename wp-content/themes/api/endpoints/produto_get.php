@@ -18,7 +18,7 @@ function produto_scheme($slug){
     }
 
     $response = array(
-      'id' => $slug,
+      "id" => $slug, 
       "fotos" => $images_array,
       "nome" => $post_meta['nome'][0],
       "preco" => $post_meta['preco'][0],
@@ -28,13 +28,13 @@ function produto_scheme($slug){
     );
 
   } else {
-    $response = new WP_error('nao existe', 'Produto nao encontrado', array('status' => 404));
+    $response = new WP_Error('naoexiste', 'Produto não encontrado.', array('status' => 404));
   }
   return $response;
 }
 
 function api_produto_get($request) {
-  $response = produto_scheme([$request["slug"]])
+  $response = produto_scheme($request["slug"]);
   return rest_ensure_response($response);
 }
 

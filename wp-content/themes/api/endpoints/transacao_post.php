@@ -13,7 +13,7 @@ function api_transacao_post($request) {
     $endereco = json_encode($request['endereco'], JSON_UNESCAPED_UNICODE);
     $produto = json_encode($request['produto'], JSON_UNESCAPED_UNICODE);
 
-    produto_id = get_produto_id_by_slug($produto_slug);
+    $produto_id = get_produto_id_by_slug($produto_slug);
     update_post_meta($produto_id, 'vendido', 'true');
 
     $response = array(
